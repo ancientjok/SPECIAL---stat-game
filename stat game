@@ -1,0 +1,104 @@
+#include <iostream>
+
+int main()
+{
+    using namespace std;
+    int strength,agility,perception,endurance,intelligence,rem_statpoints;
+    cout << "Please distribute you stat points" << endl;
+    cout << "Avaivable stat points: 10 \n" << endl;
+    statreset:{}
+    strength = 5;
+    agility = 5;
+    perception = 5;
+    endurance = 5;
+    intelligence = 5;
+    rem_statpoints = 10;
+    stat:{}
+    cout << "Strength       " << strength << endl;
+    cout << "Agility        " << agility << endl;
+    cout << "Perception     " << perception << endl;
+    cout << "Endurance      " << endurance << endl;
+    cout << "Intelligence   " << intelligence << "\n" << endl;
+    cout << "What stat do you want to increase?" << endl;
+    string inc;
+    cin >> inc;
+    if (inc == "strength" or "agility" or "perception" or "endurance" or "intelligence") {
+        goto increase;
+    } else {
+        cout << "Please enter a valid stat, also remember to type in lower case letters" << endl;
+        goto stat;
+    }
+    increase:{}
+    cout << "How much do you want to increase " << inc << " with?" << endl;
+    cout << "avaivable skill points: " << rem_statpoints << endl;
+    int ass_statpoints;
+    cin >> ass_statpoints;
+    if (ass_statpoints > rem_statpoints) {
+        cout << "Insufficient stat points" << endl;
+        goto stat;
+    } else {
+        if (inc == "strength") {
+            strength = strength + ass_statpoints;
+            rem_statpoints = rem_statpoints - ass_statpoints;
+        } else {
+            if (inc == "agility") {
+                agility = agility + ass_statpoints;
+                rem_statpoints = rem_statpoints - ass_statpoints;
+            } else {
+                if (inc == "perception") {
+                    perception = perception + ass_statpoints;
+                    rem_statpoints = rem_statpoints - ass_statpoints;
+                } else {
+                    if (inc == "endurance") {
+                        endurance = endurance + ass_statpoints;
+                        rem_statpoints = rem_statpoints - ass_statpoints;
+                    } else {
+                        intelligence = intelligence + ass_statpoints;
+                        rem_statpoints = rem_statpoints - ass_statpoints;
+                    }
+                }
+            }
+        }
+    }
+    cout << "Increased " << inc << " with " << ass_statpoints  << "\n" << endl;
+    red:{}
+    if (rem_statpoints == 0) {
+        cout << "You have distributed all your stat points, are you happy with your selection?" << endl;
+        cout << "If you're not, you can redistribute them by typing unhappy" << endl;
+        cout << "To start playing, simply type play!" << endl;
+    } else {
+        goto stat;
+    }
+    string red;
+    cin >> red;
+    string statreset;
+    if (red == "play!") {
+        goto game;
+    } else {
+        cout << "Are you sure you want to reset your stat points?" << endl;
+        cin >> statreset;
+        if (statreset == "yes") {
+            cout << "Resetting stats" << endl;
+            goto statreset;
+        } else {
+            cout << "Do you want to start playing then?" << endl;
+            string statresetno;
+            cin >> statresetno;
+            if (statresetno == "yes") {
+                goto game;
+            } else {
+                cout << "Make up you mind!" << endl;
+                goto red;
+            }
+        }
+    }
+    goto stat;
+
+    game:{}
+    {
+        cout << "Initializing game" << endl;
+        cout << "game coming soon!" << endl;
+        cout << "Thank you for playing!" << endl;
+    }
+    return 0;
+}
